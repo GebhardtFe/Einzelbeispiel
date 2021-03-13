@@ -19,9 +19,19 @@ public class AlternierendeQuersumme implements Runnable {
 
     @Override
     public void run() {
-        int alternierdeQuersumme = firstMinusSecondSums();
-        printOutIfTheAlternierdeQuersummeOfMtrkIsEven(alternierdeQuersumme);
-        Log.d("Quersumme", "run()");
+        try {
+            int alternierdeQuersumme = firstMinusSecondSums();
+            printOutIfTheAlternierdeQuersummeOfMtrkIsEven(alternierdeQuersumme);
+            Log.d("Quersumme", "run()");
+        }catch (Exception e){
+            response.post(new Runnable() {
+                @Override
+                public void run() {
+                    tAnswer.setText("Eine Berechnung dieser Zahl ist derzeit nicht möglich da ich davon ausging das NUR gültige Matrikelnummern als Input angenommen werden! (Ein Überprüfen der eingabe war nicht gefordert)");
+                    tAnswer.setVisibility(View.VISIBLE);
+                }
+            });
+        }
     }
 
     public void printOutIfTheAlternierdeQuersummeOfMtrkIsEven(int alternierdeQuersumme){
