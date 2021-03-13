@@ -2,6 +2,7 @@ package gebhardtfe.seii.einzelbeispiel;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.io.*;
@@ -13,12 +14,15 @@ public class tcpClient implements Runnable{
     private String answer;
     private Socket clientSocket;
 
-    Handler response;
+    private TextView tAnswer;
+
+    private Handler response;
 
 
-    public tcpClient(String input, Handler response){
+    public tcpClient(String input, Handler response, TextView tAnswer){
         this.input = input;
         this.response = response;
+        this.tAnswer = tAnswer;
     }
 
     @Override
@@ -28,6 +32,13 @@ public class tcpClient implements Runnable{
         }catch (IOException e){
             Log.e("Test","Kein Verbindungsaufbau möglich!");
         }
+        response.post(new Runnable() {
+            @Override
+            public void run() {
+                tAnswer.setText(answer);
+                tAnswer.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 

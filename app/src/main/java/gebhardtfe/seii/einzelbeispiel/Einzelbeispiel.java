@@ -44,7 +44,7 @@ public class Einzelbeispiel extends AppCompatActivity {
         bSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tcpClient client = new tcpClient(iNumber.getText().toString(), response);
+                tcpClient client = new tcpClient(iNumber.getText().toString(), response, tAnswer);
                 new Thread(client).start();
             }
         });
