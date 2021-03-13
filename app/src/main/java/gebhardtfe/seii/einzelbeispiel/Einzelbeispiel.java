@@ -52,7 +52,8 @@ public class Einzelbeispiel extends AppCompatActivity {
         bCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AlternierendeQuersumme alternierendeQuersumme = new AlternierendeQuersumme(iNumber.getText().toString(), response, tAnswer);
+                new Thread(alternierendeQuersumme).start();
             }
         });
 
